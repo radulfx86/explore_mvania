@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c73beg7eimws0"]
+
+[ext_resource type="Script" uid="uid://dw21txbolrwfj" path="res://char/char_base.gd" id="1_leuog"]
+
+[node name="CharBase" type="CharacterBody2D" unique_id=1028976981]
+script = ExtResource("1_leuog")
