@@ -21,9 +21,14 @@ class_name CharBase
 @export var hurt: Area2D
 
 @export var direction: Vector2 = Vector2(1,0)
+var death_timer: Timer = Timer.new()
 
 func _ready() -> void:
 	state_machine.check_functions[CharStateMachine.StateType.DIE] = func(): return stats.hp <= 0
+	state_machine.entry_functions[CharStateMachine.StateType.DIE] = func(): death_timer.start(1.0)
+	death_timer.one_shot = true
+	death_timer.timeout.connect(func(): queue_free())
+	add_child(death_timer)
 	update_animation()
 
 func update_animation() -> void:
