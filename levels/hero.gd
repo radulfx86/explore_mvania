@@ -38,7 +38,6 @@ func entry_attack() -> void:
 				print("hit %s with %s enemy?: %s" % [body, capabilities.abilities[capabilities.active_ability].name, body.is_in_group("enemies")])
 				#if body.is_in_group("enemies"):q
 				var enemy: CharBase = body
-				print("overlapping enemy: %s" % enemy)
 				enemy.apply_dmg(capabilities.dmg)
 
 func handle_idle(_target: Hero) -> void:
@@ -46,14 +45,14 @@ func handle_idle(_target: Hero) -> void:
 func handle_move(_target: Hero) -> void:
 	direction.x = Input.get_axis("move_left","move_right")
 	if direction:
+		animation.flip_h = direction.x < 0
+		hurt.scale.x = sign(direction.x) * abs(hurt.scale.x)
 		velocity.x = direction.x * capabilities.speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, capabilities.speed)
 func handle_jump(_target: Hero) -> void:
-	print("handle jump")
 	if is_on_floor():
-		print("jump")
 		velocity.y = capabilities.jump
-
 func handle_attack(_target: Hero) -> void:
-	print("handle_attack")
+	# nothing to do
+	pass
