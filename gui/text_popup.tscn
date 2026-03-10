@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cok7xddd3b6sj"]
+
+[ext_resource type="Script" uid="uid://tt0j7iq2pyby" path="res://gui/text_popup.gd" id="1_sav2f"]
+
+[node name="TextPopup" type="PopupPanel" unique_id=1684061553]
+oversampling_override = 1.0
+title = "asdf"
+size = Vector2i(200, 50)
+visible = true
+script = ExtResource("1_sav2f")
+
+[node name="PopupText" type="RichTextLabel" parent="." unique_id=2024516590]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 196.0
+offset_bottom = 46.0
+
+[node name="TypeTimer" type="Timer" parent="." unique_id=2010869726]
+one_shot = true
+
+[node name="CloseTimer" type="Timer" parent="." unique_id=68430835]
+one_shot = true
+
+[connection signal="timeout" from="TypeTimer" to="." method="type"]
+[connection signal="timeout" from="CloseTimer" to="." method="close"]

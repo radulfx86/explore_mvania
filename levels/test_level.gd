@@ -13,6 +13,7 @@ var level_size: Vector2i
 	preload("res://levels/level_2.tscn").instantiate(),
 ]
 
+@onready var text_popup = preload("uid://cok7xddd3b6sj")
 
 func _ready() -> void:
 	for l in levels:

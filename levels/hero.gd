@@ -4,6 +4,8 @@ class_name Hero
 var attack_timer: Timer = Timer.new()
 var is_attacking: bool = false
 
+@onready var text_popup = preload("uid://cok7xddd3b6sj")
+
 func _ready() -> void:
 	state_machine.check_functions[CharStateMachine.StateType.IDLE] = check_idle
 	state_machine.check_functions[CharStateMachine.StateType.JUMP] = check_jump
@@ -34,6 +36,7 @@ func check_attack() -> bool:
 			and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK
 func entry_attack() -> void:
 	if not is_attacking:
+		text_popup.instantiate().show_text_add(self,"pow",position)
 		var melee: bool = Input.is_action_just_pressed("attack_melee")
 		var ranged: bool = Input.is_action_just_pressed("attack_ranged")
 		print("attack_timer stopped melee: %s ranged: %s" % [melee, ranged])
