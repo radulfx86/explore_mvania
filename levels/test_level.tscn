@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://cjn88ejpuyin4"
 [sub_resource type="Resource" id="Resource_4n8tn"]
 script = ExtResource("3_ur00s")
 speed = 100
-jump = -400
+jump = -200
 hp = 10
 dmg = 5
 def = null

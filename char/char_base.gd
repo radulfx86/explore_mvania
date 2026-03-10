@@ -33,7 +33,7 @@ func _ready() -> void:
 
 func update_animation() -> void:
 	if animation.sprite_frames.has_animation(state_machine.animations[state_machine.current]):
-		animation.play(state_machine.animations[state_machine.current])
+		animation.play("%s_%s" % [get_animation_prefix(), state_machine.animations[state_machine.current]])
 
 func apply_dmg(value: int) -> void:
 	stats.hp -= value
