@@ -27,10 +27,16 @@ func check_jump() -> bool:
 func check_move() -> bool:
 	return Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right")
 func check_attack() -> bool:
-	return (is_attacking or Input.is_action_just_pressed("attack_melee")) and capabilities.active_ability >= 0 and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK
+	return (is_attacking \
+				or Input.is_action_just_pressed("attack_melee") \
+				or Input.is_action_just_pressed("attack_ranged")) \
+			and capabilities.active_ability >= 0 \
+			and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK
 func entry_attack() -> void:
 	if not is_attacking:
-		print("attack_timer stopped")
+		var melee: bool = Input.is_action_just_pressed("attack_melee")
+		var ranged: bool = Input.is_action_just_pressed("attack_ranged")
+		print("attack_timer stopped melee: %s ranged: %s" % [melee, ranged])
 		is_attacking = true
 		attack_timer.start(capabilities.abilities[capabilities.active_ability].duration)
 		if hurt.has_overlapping_bodies():

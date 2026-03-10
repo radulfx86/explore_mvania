@@ -21,8 +21,8 @@ var current: StateType = StateType.IDLE
 
 @export var animations: Dictionary[StateType, String] = {
 	StateType.IDLE: "idle",
-	StateType.JUMP: "move",
-	StateType.MOVE: "move",
+	StateType.JUMP: "idle",
+	StateType.MOVE: "run",
 	StateType.ATTACK: "attack",
 	StateType.DIE: "die"
 }
@@ -73,8 +73,14 @@ func update_state(target: Node) -> void:
 		if check_functions[test].call():
 			exit_functions[current].call()
 			entry_functions[test].call()
-			if target.animation.sprite_frames.has_animation(animations[test]):
-				target.animation.play(animations[test])
+			var animation_name = animations[test]
+			if target.has_method("get_animation_prefix"):
+				animation_name = target.get_animation_prefix() + animation_name
+			print("try to use animation %s" % animation_name)
+			if target.animation.sprite_frames.has_animation(animation_name):
+				target.animation.play(animation_name)
+			else:
+				print("no animation for %s found" % animations[test])
 			current = test
 			return
 

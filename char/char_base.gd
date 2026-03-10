@@ -38,7 +38,12 @@ func update_animation() -> void:
 func apply_dmg(value: int) -> void:
 	stats.hp -= value
 	print("applied %d to %s - %s hp left" % [value, name, stats.hp])
-	velocity.y = -value * 10
+	if value > 0:
+		velocity.y = -value * 10
+
+func get_animation_prefix() -> String:
+	print("requested animation prefix -> %d_%s_" % [RealityManagement.realilty_level, char_name])
+	return "%d_%s_" % [RealityManagement.realilty_level, char_name]
 
 func _physics_process(delta: float) -> void:
 	state_machine.update_state(self)
@@ -54,7 +59,7 @@ func _on_body_entered(body: Node) -> void:
 	print("_on_body_entered(%s) of %s" % [body, name])
 	pass
 	
-func _on_area_exited(area: Area2D) -> void:
+func _on_area_exited(_area: Area2D) -> void:
 	pass
 
 func _on_body_exited(body: Node) -> void:
