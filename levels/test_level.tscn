@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://baaigr0hlsgfo" path="res://resources/images/wall.png" id="10_wkb0e"]
 [ext_resource type="PackedScene" uid="uid://cl0cqa0nv1p4l" path="res://gui.tscn" id="11_axl34"]
 [ext_resource type="PackedScene" uid="uid://dqohsw1kdjdgc" path="res://levels/level_0.tscn" id="11_paa45"]
+[ext_resource type="Script" uid="uid://dw21txbolrwfj" path="res://char/char_base.gd" id="14_8hjdj"]
 
 [sub_resource type="Resource" id="Resource_ly3hx"]
 script = ExtResource("2_e7anx")
@@ -341,6 +342,80 @@ radius = 6.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur00s"]
 size = Vector2(7, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly3hx"]
+shader = ExtResource("7_wndkh")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wndkh"]
+texture = ExtResource("7_ur00s")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.047362328, 4, 0, 4, 4, -4, 4)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.3438511, 0.11461735, 4, -4, 4)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.20305061, 4, -4, 4, -4, -4, -0.10152531, -4)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.60915375, -4, -4, 0.71067905, -4, -4)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.10152531, 4, -0.06934357, 4, -4, -4, -4)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.20305061, -4, 4, 0.20305157, 4, -4)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.20305157, -4, 4, -4, 4, 4, 0.10152626, 4)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.20305061, 4, 4, -0.30457687, 4, 4)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0.30457687, 0.40610313, -4, 4, -4, 4, 4, -4, 4)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.40610123, -4, 4, 0.5076275, 4, 4, -4, 4, -4, -4)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -0.40610218, -0.40610123, 4, -4, 4, -4, -4, 4, -4)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.14208746, 0, 4, 4, 4, 4, -4, -4, -4)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_paa45"]
+texture = ExtResource("10_wkb0e")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, -4, -4, 0, -4)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -4, 4, -4, 4, 0)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 0, 0, 4, -4, 4, -4, 0, 0, -4, 4, -4)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, 4, 4, -1, 4, -0.91372967, -4)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 0, -4, 4, 0, 4, 4, -4, 4)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 0, 4, 4, 0, 4)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 0, 4, -4, 4)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 0.81220436, -4, 1.0152559, 4, -4, 4)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 0, -4, 4, -4, 4, 4, -4, 4)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -4, 4, 0, 4, 4, -4, 4, -4, -4)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -1.0152559, 4, -1.0152559, 4, 4, -4, 4)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 0, 4, 4, 4, 4, -4, -4, -4)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, 4, 0, 0, 4, -4, 4, -4, -4)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, -4, 0.91372967, 4, 1, 4, -4)
+
+[sub_resource type="TileSet" id="TileSet_ly3hx"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_wndkh")
+sources/1 = SubResource("TileSetAtlasSource_paa45")
 
 [sub_resource type="Resource" id="Resource_e7anx"]
 script = ExtResource("3_ur00s")
@@ -1489,82 +1564,19 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_wndkh"]
 radius = 7.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly3hx"]
-shader = ExtResource("7_wndkh")
+[sub_resource type="Resource" id="Resource_0vv12"]
+script = ExtResource("3_ur00s")
+hp = 10
+metadata/_custom_type_script = "uid://bb0v3miy125lh"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wndkh"]
-texture = ExtResource("7_ur00s")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.047362328, 4, 0, 4, 4, -4, 4)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.3438511, 0.11461735, 4, -4, 4)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.20305061, 4, -4, 4, -4, -4, -0.10152531, -4)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.60915375, -4, -4, 0.71067905, -4, -4)
-4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.10152531, 4, -0.06934357, 4, -4, -4, -4)
-5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.20305061, -4, 4, 0.20305157, 4, -4)
-6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.20305157, -4, 4, -4, 4, 4, 0.10152626, 4)
-7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.20305061, 4, 4, -0.30457687, 4, 4)
-8:0/0 = 0
-8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0.30457687, 0.40610313, -4, 4, -4, 4, 4, -4, 4)
-9:0/0 = 0
-9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.40610123, -4, 4, 0.5076275, 4, 4, -4, 4, -4, -4)
-10:0/0 = 0
-10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -0.40610218, -0.40610123, 4, -4, 4, -4, -4, 4, -4)
-11:0/0 = 0
-11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -0.14208746, 0, 4, 4, 4, 4, -4, -4, -4)
-12:0/0 = 0
-12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_paa45"]
-texture = ExtResource("10_wkb0e")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, -4, -4, 0, -4)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -4, 4, -4, 4, 0)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 0, 0, 4, -4, 4, -4, 0, 0, -4, 4, -4)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, 4, 4, -1, 4, -0.91372967, -4)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 0, -4, 4, 0, 4, 4, -4, 4)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 0, 4, 4, 0, 4)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 0, 4, -4, 4)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 0.81220436, -4, 1.0152559, 4, -4, 4)
-3:3/0 = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 0, -4, 4, -4, 4, 4, -4, 4)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -4, 4, 0, 4, 4, -4, 4, -4, -4)
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -1.0152559, 4, -1.0152559, 4, 4, -4, 4)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 0, 4, 4, 4, 4, -4, -4, -4)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, 4, 0, 0, 4, -4, 4, -4, -4)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, -4, 0.91372967, 4, 1, 4, -4)
-
-[sub_resource type="TileSet" id="TileSet_ly3hx"]
-tile_size = Vector2i(8, 8)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_wndkh")
-sources/1 = SubResource("TileSetAtlasSource_paa45")
+[sub_resource type="Resource" id="Resource_o5yuq"]
+script = ExtResource("4_wndkh")
+hp = 10
+metadata/_custom_type_script = "uid://b0nyc6egp5ksc"
 
 [node name="TestLevel" type="Node2D" unique_id=1284434369]
 script = ExtResource("1_4n8tn")
+level_layers = null
 
 [node name="Hero" type="CharacterBody2D" parent="." unique_id=789768267 node_paths=PackedStringArray("animation", "hit", "hurt")]
 position = Vector2(24, 35)
@@ -1605,31 +1617,6 @@ collision_mask = 4
 position = Vector2(3.5, 2.5)
 shape = SubResource("RectangleShape2D_ur00s")
 
-[node name="NPC" parent="." unique_id=1028976981 node_paths=PackedStringArray("animation", "hit", "hurt") instance=ExtResource("2_gmgay")]
-position = Vector2(289, 230)
-collision_layer = 4
-collision_mask = 3
-capabilities = SubResource("Resource_e7anx")
-stats = SubResource("Resource_ur00s")
-char_name = "squid"
-animation = NodePath("AnimatedSprite2D")
-hit = NodePath("hit_hurt_area")
-hurt = NodePath("hit_hurt_area")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC" unique_id=1152876249]
-sprite_frames = SubResource("SpriteFrames_ulql8")
-animation = &"1_squid_idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC" unique_id=698255604]
-shape = SubResource("CapsuleShape2D_3i7yh")
-
-[node name="hit_hurt_area" type="Area2D" parent="NPC" unique_id=394317894]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/hit_hurt_area" unique_id=1172450567]
-shape = SubResource("CircleShape2D_wndkh")
-
 [node name="TileMapLayer__" type="TileMapLayer" parent="." unique_id=1682479770]
 visible = false
 material = SubResource("ShaderMaterial_ly3hx")
@@ -1654,3 +1641,80 @@ position = Vector2(356, 272)
 [node name="unlock_level_2" parent="Items" unique_id=1112906649 instance=ExtResource("9_ly3hx")]
 position = Vector2(383, 272)
 value = 1
+
+[node name="NPCs" type="Node" parent="." unique_id=249805500]
+
+[node name="NPC" parent="NPCs" unique_id=1028976981 node_paths=PackedStringArray("animation", "hit", "hurt") instance=ExtResource("2_gmgay")]
+position = Vector2(289, 230)
+collision_layer = 4
+collision_mask = 3
+capabilities = SubResource("Resource_e7anx")
+stats = SubResource("Resource_ur00s")
+char_name = "squid"
+animation = NodePath("AnimatedSprite2D")
+hit = NodePath("hit_hurt_area")
+hurt = NodePath("hit_hurt_area")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/NPC" unique_id=1152876249]
+sprite_frames = SubResource("SpriteFrames_ulql8")
+animation = &"1_squid_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC" unique_id=698255604]
+shape = SubResource("CapsuleShape2D_3i7yh")
+
+[node name="hit_hurt_area" type="Area2D" parent="NPCs/NPC" unique_id=394317894]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/hit_hurt_area" unique_id=1172450567]
+shape = SubResource("CircleShape2D_wndkh")
+
+[node name="Enemy_1" type="CharacterBody2D" parent="NPCs" unique_id=1092933065 node_paths=PackedStringArray("animation", "hit", "hurt")]
+position = Vector2(127, 274)
+script = ExtResource("14_8hjdj")
+capabilities = SubResource("Resource_0vv12")
+stats = SubResource("Resource_o5yuq")
+char_name = "diamond"
+animation = NodePath("AnimatedSprite2D")
+hit = NodePath("hit_hurt_area")
+hurt = NodePath("hit_hurt_area")
+metadata/_custom_type_script = "uid://dw21txbolrwfj"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/Enemy_1" unique_id=2099692646]
+sprite_frames = SubResource("SpriteFrames_ulql8")
+animation = &"1_diamond_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Enemy_1" unique_id=537937271]
+shape = SubResource("CapsuleShape2D_3i7yh")
+
+[node name="hit_hurt_area" type="Area2D" parent="NPCs/Enemy_1" unique_id=738235974]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Enemy_1/hit_hurt_area" unique_id=125360613]
+shape = SubResource("CircleShape2D_wndkh")
+
+[node name="Enemy_2" type="CharacterBody2D" parent="NPCs" unique_id=1553027331 node_paths=PackedStringArray("animation", "hit", "hurt")]
+position = Vector2(303, 333)
+script = ExtResource("14_8hjdj")
+capabilities = SubResource("Resource_0vv12")
+stats = SubResource("Resource_o5yuq")
+char_name = "round"
+animation = NodePath("AnimatedSprite2D")
+hit = NodePath("hit_hurt_area")
+hurt = NodePath("hit_hurt_area")
+metadata/_custom_type_script = "uid://dw21txbolrwfj"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/Enemy_2" unique_id=488455738]
+sprite_frames = SubResource("SpriteFrames_ulql8")
+animation = &"1_round_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Enemy_2" unique_id=151088456]
+shape = SubResource("CapsuleShape2D_3i7yh")
+
+[node name="hit_hurt_area" type="Area2D" parent="NPCs/Enemy_2" unique_id=204364593]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Enemy_2/hit_hurt_area" unique_id=1834206385]
+shape = SubResource("CircleShape2D_wndkh")

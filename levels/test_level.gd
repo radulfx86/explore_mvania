@@ -40,12 +40,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("switch_level_0"):
 		#enable_level(0)
 		load_level(0)
+		reali.switch_level(0)
 	elif event.is_action_pressed("switch_level_1"):
 		#enable_level(1)
 		load_level(1)
+		RealityManagement.switch_level(0)
 	elif event.is_action_pressed("switch_level_2"):
 		#enable_level(2)
 		load_level(2)
+		RealityManagement.switch_level(0)
 
 ''' LEVEL GENERATION '''
 func load_level(level: int = 1, num_layers: int = 3) -> void:

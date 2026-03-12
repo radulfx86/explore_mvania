@@ -9,6 +9,16 @@ enum Skills
 	NUM_SKILLS
 }
 
+static var skill_colors: Array[Color]= [
+	Color(1,0,0,1),
+	Color(0,1,0,1),
+	Color(0,0,1,1),
+	Color(1,1,1,1),
+]
+
+static var max_life: int = 10
+static var life: int = 1
+
 static var unlocked_skills: int = 0
 
 static func unlock_skill(skill: Skills) -> void:

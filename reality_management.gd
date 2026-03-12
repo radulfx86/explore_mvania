@@ -6,6 +6,10 @@ static var delay_time: float = 2.0
 static var realilty_level: int = 1
 static var target_level: int = 1
 
+class dummy extends Node:
+	signal level_switched
+static var d: dummy = dummy.new()
+
 func _ready() -> void:
 	delay_timer.one_shot = true
 	delay_timer.timeout.connect(_delay_timeout)
@@ -20,3 +24,4 @@ func switch_level(tgt_level: int) -> void:
 
 func _delay_timeout() -> void:
 	realilty_level = target_level
+	d.level_switched.emit()
