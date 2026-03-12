@@ -1576,7 +1576,6 @@ metadata/_custom_type_script = "uid://b0nyc6egp5ksc"
 
 [node name="TestLevel" type="Node2D" unique_id=1284434369]
 script = ExtResource("1_4n8tn")
-level_layers = null
 
 [node name="Hero" type="CharacterBody2D" parent="." unique_id=789768267 node_paths=PackedStringArray("animation", "hit", "hurt")]
 position = Vector2(24, 35)

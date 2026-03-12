@@ -15,13 +15,13 @@ func _ready() -> void:
 	delay_timer.timeout.connect(_delay_timeout)
 	add_child(delay_timer)
 
-func switch_level(tgt_level: int) -> void:
+static func switch_level(tgt_level: int) -> void:
 	target_level = tgt_level
 	if delay_timer.time_left > 0:
 		delay_timer.start(delay_time)
 	else:
 		_delay_timeout()
 
-func _delay_timeout() -> void:
+static func _delay_timeout() -> void:
 	realilty_level = target_level
 	d.level_switched.emit()

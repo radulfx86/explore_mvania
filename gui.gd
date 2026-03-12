@@ -58,6 +58,5 @@ func init_hearts(width: int) -> void:
 	RealityManagement.d.level_switched.connect(update_level)
 	
 func update_level() -> void:
-	level_info_label.text = "reality: %d" % RealityManagement.realilty_level
 	current_reality.material.set_shader_parameter("test_color", PlayerProgress.skill_colors[RealityManagement.realilty_level])
 	
