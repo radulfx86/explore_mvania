@@ -30,7 +30,8 @@ func init_squares(width: int) -> void:
 		reality_icons.append(square)
 		level_info_label.add_child(square)
 		square.material = mat.duplicate()
-		square.material.set_shader_parameter("test_color", r)
+		square.material.set_shader_parameter("reality_color", r)
+		square.visible = false
 		c += 1
 	
 	current_reality = animated_item.instantiate()
@@ -41,7 +42,7 @@ func init_squares(width: int) -> void:
 	reality_icons.append(current_reality)
 	reality_placeholder.add_child(current_reality)
 	current_reality.material = mat.duplicate()
-	current_reality.material.set_shader_parameter("test_color", PlayerProgress.skill_colors[0])
+	current_reality.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[0])
 
 func init_hearts(width: int) -> void:
 	var c:int = 0
@@ -52,11 +53,15 @@ func init_hearts(width: int) -> void:
 		heart.position.y += level_info_label.size.y/2
 		#life_info_placeholder.add_child(heart)
 		life_info_label.add_child(heart)
-		heart.material.set_shader_parameter("test_color", Color.RED)
+		heart.material.set_shader_parameter("reality_color", Color.RED)
 		c += 1
 	
 	RealityManagement.d.level_switched.connect(update_level)
 	
 func update_level() -> void:
-	current_reality.material.set_shader_parameter("test_color", PlayerProgress.skill_colors[RealityManagement.realilty_level])
-	
+	current_reality.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[RealityManagement.realilty_level])
+
+''' move this into a signal receiver '''
+func _physics_process(_delta: float) -> void:
+	for r in range(PlayerProgress.skill_colors.size()):
+		reality_icons[r].visible = PlayerProgress.has_skill(r)

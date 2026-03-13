@@ -345,6 +345,7 @@ size = Vector2(7, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ly3hx"]
 shader = ExtResource("7_wndkh")
+shader_parameter/reality_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wndkh"]
 texture = ExtResource("7_ur00s")

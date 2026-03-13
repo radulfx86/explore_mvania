@@ -1,16 +1,7 @@
 shader_type canvas_item;
 
-
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform vec4 reality_color: source_color;
 
 void fragment() {
-	// Called for every pixel the material is visible on.
-	//COLOR = COLOR * vec4(1,0,0,1);
+	COLOR = COLOR * reality_color;
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}

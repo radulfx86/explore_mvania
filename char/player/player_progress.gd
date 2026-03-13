@@ -23,7 +23,6 @@ static var unlocked_skills: int = 0
 
 static func unlock_skill(skill: Skills) -> void:
 	unlocked_skills |= 1<<skill
-	print_unlocked_skills()
 
 static func clear_skill(skill: Skills) -> void:
 	unlocked_skills &= 1<<skill

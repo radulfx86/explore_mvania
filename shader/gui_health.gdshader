@@ -1,13 +1,13 @@
 shader_type canvas_item;
 
-uniform vec4 test_color: source_color;
+uniform vec4 reality_color: source_color;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
-	COLOR = COLOR * test_color;
+	COLOR = COLOR * reality_color;
 }
 
 //void light() {

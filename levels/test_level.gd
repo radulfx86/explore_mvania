@@ -16,16 +16,24 @@ var level_size: Vector2i
 @onready var text_popup = preload("uid://cok7xddd3b6sj")
 
 func _ready() -> void:
+	var c: int = 0
 	for l in levels:
-		#l.visible = false
-		#l.enabled = false
-		#add_child(l)
+		if l == null:
+			continue
+		l.visible = false
+		l.enabled = false
+		l.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[c])
+		add_child(l)
+		c += 1
 		pass
 	#enable_level(0)
 	load_level(0)
+	tilemap.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[0])
 	pass
 
 func enable_level(i: int) -> void:
+	tilemap.visible = false
+	tilemap.enabled = false
 	for index in range(levels.size()):
 		if levels[index]:
 			var shall_enable = i == index
@@ -64,6 +72,7 @@ func load_level(level: int = 1, num_layers: int = 3) -> void:
 		level_map.create_from_image_alpha(level_img)
 		tilemap.clear()
 		_fill_grid(tilemap, level)
+		tilemap.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[level])
 		
 		var packed_scene = PackedScene.new()
 		packed_scene.pack(tilemap)

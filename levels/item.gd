@@ -13,11 +13,14 @@ enum ItemType
 
 func _ready() -> void:
 	animation.play()
-	var t = animation.get_sprite_frames().get_frame_texture(animation.animation, animation.get_frame())                                                                                                               
+	var t = animation.get_sprite_frames().get_frame_texture(animation.animation, animation.get_frame())               
+	animation.material = animation.material.duplicate()                                                      
+	animation.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST                                          
 	animation.material.set_shader_parameter("frameTex", t)
 	animation.material.set_shader_parameter("texSize", t.get_atlas().get_size())
 	animation.material.set_shader_parameter("frameOffset", t.get_region().position)
 	animation.material.set_shader_parameter("frameSize",  t.get_region().size)  
+	animation.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[value])
 
 
 func _on_body_entered(body: Node2D) -> void:
