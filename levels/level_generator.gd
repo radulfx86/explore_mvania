@@ -41,4 +41,5 @@ func load_level(level: int = 1, num_layers: int = 4) -> void:
 	var packed_scene = PackedScene.new()
 	packed_scene.pack(tilemap)
 	levels[level] = packed_scene.instantiate()
-	ResourceSaver.save(packed_scene, "res://levels/level_%d.tscn" % level)
+	var success = ResourceSaver.save(packed_scene, "res://levels/generated/tiles_%d.tscn" % level)
+	print("saved level %d - status: %s" % [level, success])

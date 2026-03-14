@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cl0cqa0nv1p4l"]
+
+[ext_resource type="Script" uid="uid://dxwq3q0f80ie3" path="res://gui/gui.gd" id="1_80edf"]
+
+[node name="GUI" type="CanvasLayer" unique_id=1530963301]
+script = ExtResource("1_80edf")
+
+[node name="p" type="Panel" parent="." unique_id=881219437]
+offset_right = 351.0
+offset_bottom = 56.0
+
+[node name="h" type="HBoxContainer" parent="p" unique_id=629566341]
+layout_mode = 0
+offset_right = 158.0
+offset_bottom = 50.0
+
+[node name="RealityPlaceholder" type="Control" parent="p/h" unique_id=1920769510]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="p/h" unique_id=838805433]
+layout_mode = 2
+
+[node name="h_life" type="HBoxContainer" parent="p/h/v" unique_id=1641982507]
+layout_mode = 2
+
+[node name="LifeInfoLabel" type="Label" parent="p/h/v/h_life" unique_id=729048388]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "life"
+
+[node name="LifeInfoPlaceholder" type="Control" parent="p/h/v/h_life" unique_id=824797857]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="h_reality" type="HBoxContainer" parent="p/h/v" unique_id=1107222581]
+layout_mode = 2
+
+[node name="RealityInfoLabel" type="Label" parent="p/h/v/h_reality" unique_id=1199765110]
+layout_mode = 2
+text = "reality"
+
+[node name="RealityInfoPlaceholder" type="Control" parent="p/h/v/h_reality" unique_id=280245924]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2

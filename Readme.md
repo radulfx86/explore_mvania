@@ -7,7 +7,7 @@ TODO
 [ ] NPC path
 [ ] NPC attack
 [ ] GUI HealthBar
-[ ] GUI Level
+[X] GUI Level
 [ ] hero motion debugging
 [ ] level tiles
 [ ] level layout
