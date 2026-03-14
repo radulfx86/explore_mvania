@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bb0v3miy125lh" path="res://char/char_capabilities.gd" id="3_ur00s"]
 [ext_resource type="Script" uid="uid://b0nyc6egp5ksc" path="res://char/char_stats.gd" id="4_wndkh"]
 [ext_resource type="PackedScene" uid="uid://cl0cqa0nv1p4l" path="res://gui/gui.tscn" id="11_axl34"]
-[ext_resource type="PackedScene" uid="uid://de2kldnkomiyc" path="res://levels/generated/tiles_0.tscn" id="11_paa45"]
+[ext_resource type="PackedScene" path="res://levels/generated/tiles_0.tscn" id="11_paa45"]
 
 [sub_resource type="Resource" id="Resource_ly3hx"]
 script = ExtResource("2_e7anx")
@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://cjn88ejpuyin4"
 [sub_resource type="Resource" id="Resource_4n8tn"]
 script = ExtResource("3_ur00s")
 speed = 100
-jump = -200
+jump = -400
 hp = 10
 dmg = 5
 def = null
@@ -345,7 +345,7 @@ size = Vector2(7, 1)
 script = ExtResource("1_4n8tn")
 
 [node name="Hero" type="CharacterBody2D" parent="." unique_id=789768267 node_paths=PackedStringArray("animation", "hit", "hurt")]
-position = Vector2(447, 284)
+position = Vector2(440, 146)
 collision_layer = 2
 collision_mask = 29
 script = ExtResource("1_gmgay")

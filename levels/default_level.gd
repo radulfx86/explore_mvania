@@ -16,6 +16,8 @@ func enable(value: bool = true) -> void:
 	if has_node("Items"):
 		for x in $Items.get_children():
 			x.visible = value
+			print("set %s of %s to %s" %  [x, name, value])
+			#x.enabled = value
 	if has_node("NPCs"):
 		for x in $NPCs.get_children():
 			x.visible = value

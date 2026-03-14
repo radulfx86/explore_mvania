@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bb0v3miy125lh" path="res://char/char_capabilities.gd" id="6_aerfg"]
 [ext_resource type="Script" uid="uid://b0nyc6egp5ksc" path="res://char/char_stats.gd" id="7_nmsli"]
 [ext_resource type="Texture2D" uid="uid://ik178hc7kxrt" path="res://resources/images/chars.png" id="8_betor"]
-[ext_resource type="PackedScene" uid="uid://bn7qemcxs7x2b" path="res://levels/generated/tiles_1.tscn" id="9_3sk1a"]
+[ext_resource type="PackedScene" path="res://levels/generated/tiles_1.tscn" id="9_3sk1a"]
 [ext_resource type="PackedScene" uid="uid://idxo5277p32o" path="res://char/enemies/enemy_diamond.tscn" id="9_08mmt"]
 [ext_resource type="PackedScene" uid="uid://0yd1xmihwnst" path="res://char/enemies/enemy_round.tscn" id="10_5ot28"]
 [ext_resource type="Script" uid="uid://bf7t4gv72jwkh" path="res://char/enemies/enemy_diamond.gd" id="10_aerfg"]
@@ -1165,6 +1165,18 @@ tiles_map = NodePath("Tiles/TileMapLayer")
 [node name="Items" type="Node" parent="." unique_id=1322384217]
 
 [node name="unlock_level_2" parent="Items" unique_id=1112906649 instance=ExtResource("4_08mmt")]
+position = Vector2(383, 272)
+value = 1
+
+[node name="unlock_level_3" parent="Items" unique_id=411167919 instance=ExtResource("4_08mmt")]
+position = Vector2(383, 272)
+value = 1
+
+[node name="unlock_level_4" parent="Items" unique_id=1479108990 instance=ExtResource("4_08mmt")]
+position = Vector2(383, 272)
+value = 1
+
+[node name="unlock_level_5" parent="Items" unique_id=888110201 instance=ExtResource("4_08mmt")]
 position = Vector2(383, 272)
 value = 1
 

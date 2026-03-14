@@ -36,7 +36,7 @@ func load_level(level: int = 1, num_layers: int = 4) -> void:
 		return
 	var level_generator: LevelGeneration = LevelGeneration.new()
 	level_generator.generate_from_image(level_img, tilemap, level, num_layers)
-	tilemap.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[level])
+	#tilemap.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[level])
 	
 	var packed_scene = PackedScene.new()
 	packed_scene.pack(tilemap)

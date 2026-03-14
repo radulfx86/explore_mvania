@@ -39,14 +39,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		packed_scene.pack($TileMapLayer)
 		ResourceSaver.save(packed_scene, "res://level_map.tscn")
 	elif event.is_action_pressed("switch_level_0"):
-		if PlayerProgress.has_skill(PlayerProgress.Skills.RED):
-			enable_level(0)
-			RealityManagement.switch_level(0)
+		enable_level(0)
+		RealityManagement.switch_level(0)
 	elif event.is_action_pressed("switch_level_1"):
-		if PlayerProgress.has_skill(PlayerProgress.Skills.GREEN):
+		if PlayerProgress.has_skill(PlayerProgress.Skills.RED):
 			enable_level(1)
 			RealityManagement.switch_level(1)
 	elif event.is_action_pressed("switch_level_2"):
-		if PlayerProgress.has_skill(PlayerProgress.Skills.BLUE):
+		if PlayerProgress.has_skill(PlayerProgress.Skills.GREEN):
 			enable_level(2)
 			RealityManagement.switch_level(2)
