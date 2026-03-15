@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://gg6auw273reb" path="res://levels/load_screen.gd" id="1_hpvtn"]
 
 [node name="Node2D" type="Node2D" unique_id=1848155283]
+position = Vector2(-2, 0)
 script = ExtResource("1_hpvtn")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1405968974]
@@ -34,8 +35,7 @@ text = "CONTROLS"
 
 [node name="key layout" type="Label" parent="CenterContainer/VSplitContainer" unique_id=1739526145]
 layout_mode = 2
-text = "Controls:
-WASD     move
+text = "WASD     move
 <space> jump
 E              attack
 1...4        change reality"

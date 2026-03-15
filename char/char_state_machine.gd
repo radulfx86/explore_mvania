@@ -60,16 +60,16 @@ var current: StateType = StateType.IDLE
 }
 
 @export var transitions: Dictionary[StateType, Array] = {
-	StateType.IDLE: [StateType.MOVE, StateType.JUMP, StateType.ATTACK, StateType.DIE],
-	StateType.JUMP: [StateType.MOVE, StateType.IDLE, StateType.ATTACK, StateType.DIE],
-	StateType.MOVE: [StateType.JUMP, StateType.IDLE, StateType.ATTACK, StateType.DIE],
-	StateType.ATTACK: [StateType.ATTACK, StateType.MOVE, StateType.IDLE, StateType.DIE],
-	StateType.DIE: []
-	#StateType.IDLE: [StateType.DIE, StateType.MOVE, StateType.ATTACK],
-	#StateType.JUMP: [StateType.DIE, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
-	#StateType.MOVE: [StateType.DIE, StateType.JUMP, StateType.IDLE, StateType.ATTACK],
-	#StateType.ATTACK: [StateType.DIE, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
+	#StateType.IDLE: [StateType.MOVE, StateType.JUMP, StateType.ATTACK, StateType.DIE],
+	#StateType.JUMP: [StateType.MOVE, StateType.IDLE, StateType.ATTACK, StateType.DIE],
+	#StateType.MOVE: [StateType.JUMP, StateType.IDLE, StateType.ATTACK, StateType.DIE],
+	#StateType.ATTACK: [StateType.ATTACK, StateType.MOVE, StateType.IDLE, StateType.DIE],
 	#StateType.DIE: []
+	StateType.IDLE: [StateType.DIE, StateType.MOVE, StateType.ATTACK],
+	StateType.JUMP: [StateType.DIE, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
+	StateType.MOVE: [StateType.DIE, StateType.JUMP, StateType.IDLE, StateType.ATTACK],
+	StateType.ATTACK: [StateType.DIE, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
+	StateType.DIE: []
 }
 
 func update_state(target: Node) -> void:
