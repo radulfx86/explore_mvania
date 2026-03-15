@@ -8,6 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_udfhf"]
 script = ExtResource("3_3sk57")
+speed = 80
 hp = 10
 metadata/_custom_type_script = "uid://bb0v3miy125lh"
 
@@ -1147,13 +1148,17 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_w75he"]
 radius = 7.0
 
-[node name="Enemy_2" type="CharacterBody2D" unique_id=1376415472 node_paths=PackedStringArray("animation", "hit", "hurt")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr2xo"]
+size = Vector2(166, 11)
+
+[node name="Enemy_2" type="CharacterBody2D" unique_id=1376415472 node_paths=PackedStringArray("detection_area", "animation", "hit", "hurt")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_nr2xo")
 capabilities = SubResource("Resource_udfhf")
 stats = SubResource("Resource_i6od7")
 char_name = "round"
+detection_area = NodePath("detection_area")
 animation = NodePath("AnimatedSprite2D")
 hit = NodePath("hit_hurt_area")
 hurt = NodePath("hit_hurt_area")
@@ -1172,3 +1177,11 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_hurt_area" unique_id=1908980832]
 shape = SubResource("CircleShape2D_w75he")
+
+[node name="detection_area" type="Area2D" parent="." unique_id=1239312942]
+collision_layer = 0
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area" unique_id=1111639304]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_nr2xo")
