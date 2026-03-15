@@ -15,6 +15,7 @@ var path_dir: int = 1
 @export var update_dist: float = 10.0
 @export var detection_area: Area2D
 var target: Node = null
+signal hp_changed
 
 @export var animation: AnimatedSprite2D:
 	set(a):
@@ -138,6 +139,7 @@ func apply_dmg(value: int) -> void:
 	print("hit applied %d to %s - %s hp left" % [value, name, stats.hp])
 	if value > 0:
 		velocity.y = -value * 10
+	hp_changed.emit()
 
 func get_animation_prefix() -> String:
 	#print("requested animation prefix -> %d_%s_" % [RealityManagement.realilty_level, char_name])

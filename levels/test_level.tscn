@@ -31,7 +31,7 @@ metadata/_custom_type_script = "uid://bb0v3miy125lh"
 
 [sub_resource type="Resource" id="Resource_wkb0e"]
 script = ExtResource("4_wndkh")
-hp = 10
+hp = 9
 metadata/_custom_type_script = "uid://b0nyc6egp5ksc"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_axl34"]
@@ -356,6 +356,7 @@ normal = Vector2(0, 1)
 script = ExtResource("1_4n8tn")
 
 [node name="Hero" type="CharacterBody2D" parent="." unique_id=789768267 node_paths=PackedStringArray("animation", "hit", "hurt")]
+unique_name_in_owner = true
 position = Vector2(440, 146)
 collision_layer = 2
 collision_mask = 29
@@ -363,9 +364,11 @@ script = ExtResource("1_gmgay")
 capabilities = SubResource("Resource_4n8tn")
 stats = SubResource("Resource_wkb0e")
 char_name = "hero"
+update_dist = null
 animation = NodePath("AnimatedSprite2D")
 hit = NodePath("hit_area")
 hurt = NodePath("hurt_area")
+direction = null
 metadata/_custom_type_script = "uid://dw21txbolrwfj"
 
 [node name="Camera2D" type="Camera2D" parent="Hero" unique_id=785071815]

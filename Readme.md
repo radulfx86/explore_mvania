@@ -6,7 +6,7 @@
 * [ ] animations round
 * [X] NPC path
 * [X] NPC attack
-* [ ] GUI HealthBar
+* [X] GUI HealthBar
 * [X] GUI Level
 * [ ] hero motion debugging
 * [ ] level tiles

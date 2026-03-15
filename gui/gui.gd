@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var reality_placeholder: Control = $p/h/RealityPlaceholder
 var reality_icons: Array[AnimatedSprite2D]
 var current_reality: AnimatedSprite2D
+var heart_icons: Array[AnimatedSprite2D]
 
 func _ready() -> void:
 	
@@ -43,23 +44,36 @@ func init_squares(width: int) -> void:
 	reality_placeholder.add_child(current_reality)
 	current_reality.material = mat.duplicate()
 	current_reality.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[0])
+	RealityManagement.d.level_switched.connect(update_level)
 
 func init_hearts(width: int) -> void:
 	var c:int = 0
-	for r in range(PlayerProgress.max_life):
+	var player_hp = %Hero.stats.hp
+	for r in range( %Hero.capabilities.hp):
 		var heart: AnimatedSprite2D = animated_item.instantiate()
 		heart.play("heart")
 		heart.position.x += width + 20 * c
 		heart.position.y += level_info_label.size.y/2
-		#life_info_placeholder.add_child(heart)
+		if r >= player_hp:
+			heart.visible = false
+		heart_icons.append(heart)
 		life_info_label.add_child(heart)
 		heart.material.set_shader_parameter("reality_color", Color.RED)
 		c += 1
-	
-	RealityManagement.d.level_switched.connect(update_level)
+	%Hero.hp_changed.connect(update_hp)
 	
 func update_level() -> void:
 	current_reality.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[RealityManagement.realilty_level])
+
+func update_hp() -> void:
+	var player_hp = %Hero.stats.hp
+	var c: int = 0
+	for heart in heart_icons:
+		if c >= player_hp:
+			heart.visible = false
+		else:
+			heart.visible = true
+		c += 1
 
 ''' move this into a signal receiver '''
 func _physics_process(_delta: float) -> void:
