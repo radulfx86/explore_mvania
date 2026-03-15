@@ -10,4 +10,5 @@ enum AbilityType {
 @export var name: String
 @export var value: int
 @export var duration: float
+@export var range: int
 @export var type: AbilityType

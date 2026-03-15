@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name CharBase
 
+var attack_timer: Timer = Timer.new()
+var is_attacking: bool = false
 @export var capabilities: CharCapabilities
 @export var stats: CharStats
 @export var state_machine: CharStateMachine = CharStateMachine.new()
@@ -32,11 +34,15 @@ var target: Node = null
 var death_timer: Timer = Timer.new()
 
 func _ready() -> void:
+	initialize()
+
+func initialize() -> void:
 	state_machine.check_functions[CharStateMachine.StateType.DIE] = func(): return stats.hp <= 0
 	state_machine.entry_functions[CharStateMachine.StateType.DIE] = func(): death_timer.start(1.0)
 	state_machine.process_functions[CharStateMachine.StateType.MOVE] = move_npc
 	state_machine.check_functions[CharStateMachine.StateType.MOVE] = check_move
 	state_machine.check_functions[CharStateMachine.StateType.ATTACK] = check_attack
+	state_machine.entry_functions[CharStateMachine.StateType.ATTACK] = entry_attack
 	death_timer.one_shot = true
 	death_timer.timeout.connect(func(): queue_free())
 	add_child(death_timer)
@@ -45,6 +51,10 @@ func _ready() -> void:
 	if detection_area:
 		detection_area.body_entered.connect(_on_target_body_entered)
 		detection_area.body_exited.connect(_on_target_body_exited)
+	attack_timer.one_shot = true
+	attack_timer.wait_time = 0.5
+	attack_timer.timeout.connect(func() : is_attacking = false; print("attack_timer.timeout: %s" % name))
+	add_child(attack_timer)
 
 func check_path() -> void:
 	if path:
@@ -72,7 +82,6 @@ func move_npc(_target: Node) -> void:
 			velocity.x = direction.x * capabilities.speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, capabilities.speed)
-		print("%s t direction %s velocity %s" % [name, direction, velocity])
 		return
 	if path:
 		update_path()
@@ -81,27 +90,44 @@ func move_npc(_target: Node) -> void:
 			animation.flip_h = direction.x < 0
 		else:
 			velocity.x = move_toward(velocity.x, 0, capabilities.speed)
-		print("p direction %s velocity %s" % [direction, velocity])
 	else:
 		direction = (next_pos - global_position).normalized()
-		print("e direction %s velocity %s" % [direction, velocity])
-	'''
-func handle_move(_target: Hero) -> void:
-	direction.x = Input.get_axis("move_left","move_right")
-	if direction:
-		animation.flip_h = direction.x < 0
-		hurt.scale.x = sign(direction.x) * abs(hurt.scale.x)
-		velocity.x = direction.x * capabilities.speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, capabilities.speed)
-		'''
+
 func check_move() -> bool:
 	if path:
 		return path_points.size() > 0
 	else:
 		return target != null
 func check_attack() -> bool:
-	return false
+	var is_attacking_target = target != null \
+		and capabilities.abilities.size() > 0 \
+		and capabilities.active_ability >= 0 \
+		and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK \
+		and capabilities.abilities[capabilities.active_ability].range >= (target.global_position - global_position).length()
+	#print("check attack %s is_attacking_target: %s distance: %s min range %s" % [name, is_attacking_target, (target.global_position - global_position).length() if target else -1, capabilities.abilities[capabilities.active_ability].range if capabilities.abilities.size() > 0 else -1])
+	var do_check_attack = (is_attacking or is_attacking_target) \
+			and capabilities.active_ability >= 0 \
+			and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK
+	#print("check attack %s do_check_attack: %s" % [name, do_check_attack])
+	return do_check_attack
+func entry_attack() -> void:
+	print("entry attack %s is attacking %s" % [name, is_attacking])
+	if not is_attacking:
+		#text_popup.instantiate().show_text_add(self,"a ha",position)
+		is_attacking = true
+		attack_timer.start(capabilities.abilities[capabilities.active_ability].duration)
+		if hurt.has_overlapping_bodies():
+			for body in hurt.get_overlapping_bodies():
+				print("hit %s with %s enemy?: %s %s" % [body, capabilities.abilities[capabilities.active_ability].name, body.is_in_group("enemies"), body.char_name])
+				var free_to_attack = true
+				for g in get_groups():
+					if body.is_in_group(g):
+						free_to_attack = false
+						break
+				print("hit %s -> %s is free to attack: %s" % [name, body, free_to_attack])
+				if free_to_attack:
+					var enemy: CharBase = body
+					enemy.apply_dmg(capabilities.dmg)
 
 func update_animation() -> void:
 	if animation.sprite_frames.has_animation(state_machine.animations[state_machine.current]):
@@ -109,12 +135,12 @@ func update_animation() -> void:
 
 func apply_dmg(value: int) -> void:
 	stats.hp -= value
-	print("applied %d to %s - %s hp left" % [value, name, stats.hp])
+	print("hit applied %d to %s - %s hp left" % [value, name, stats.hp])
 	if value > 0:
 		velocity.y = -value * 10
 
 func get_animation_prefix() -> String:
-	print("requested animation prefix -> %d_%s_" % [RealityManagement.realilty_level, char_name])
+	#print("requested animation prefix -> %d_%s_" % [RealityManagement.realilty_level, char_name])
 	return "%d_%s_" % [RealityManagement.realilty_level, char_name]
 
 func _physics_process(delta: float) -> void:

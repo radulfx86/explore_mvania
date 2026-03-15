@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cg84afmombtv2"]
+
+[ext_resource type="Script" uid="uid://gg6auw273reb" path="res://levels/load_screen.gd" id="1_hpvtn"]
+
+[node name="Node2D" type="Node2D" unique_id=1848155283]
+script = ExtResource("1_hpvtn")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1405968974]
+custom_minimum_size = Vector2(800, 600)
+offset_right = 800.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer" unique_id=1511047583]
+layout_mode = 2
+split_offsets = PackedInt32Array(23, 136, 171, 284)
+
+[node name="description_header" type="Label" parent="CenterContainer/VSplitContainer" unique_id=329123227]
+layout_mode = 2
+text = "DESCRIPTION"
+
+[node name="description" type="Label" parent="CenterContainer/VSplitContainer" unique_id=1160478356]
+layout_mode = 2
+text = "Fight your way through the dungeon.
+Collect the reality keys.
+Each key unlocks a different reality of the dungeon
+with different room layouts
+but also more powerful enemies."
+
+[node name="keys_header" type="Label" parent="CenterContainer/VSplitContainer" unique_id=406126069]
+layout_mode = 2
+text = "CONTROLS"
+
+[node name="key layout" type="Label" parent="CenterContainer/VSplitContainer" unique_id=1739526145]
+layout_mode = 2
+text = "Controls:
+WASD     move
+<space> jump
+E              attack
+1...4        change reality"
+
+[node name="Panel" type="Panel" parent="CenterContainer/VSplitContainer" unique_id=2036919568]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/VSplitContainer/Panel" unique_id=570404010]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -12.0
+offset_right = 84.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "press any key to start"

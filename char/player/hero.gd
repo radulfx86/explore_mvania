@@ -1,13 +1,15 @@
 extends CharBase
 class_name Hero
 
-var attack_timer: Timer = Timer.new()
-var is_attacking: bool = false
 var jump_reset: bool = true
 
 @onready var text_popup = preload("uid://cok7xddd3b6sj")
 
 func _ready() -> void:
+	initialize()
+
+func initialize() -> void:
+	super.initialize()
 	state_machine.check_functions[CharStateMachine.StateType.IDLE] = check_idle
 	state_machine.check_functions[CharStateMachine.StateType.JUMP] = check_jump
 	state_machine.check_functions[CharStateMachine.StateType.MOVE] = check_move
@@ -19,11 +21,13 @@ func _ready() -> void:
 	state_machine.entry_functions[CharStateMachine.StateType.ATTACK] = entry_attack
 	state_machine.entry_functions[CharStateMachine.StateType.JUMP] = func() : jump_reset = false
 	#state_machine.exit_functions[CharStateMachine.StateType.JUMP] = func
+	update_animation()
 	attack_timer.one_shot = true
 	attack_timer.wait_time = 0.5
-	attack_timer.timeout.connect(func() : is_attacking = false; print("attack_timer.timeout"))
+	attack_timer.timeout.connect(func() : is_attacking = false; print("attack_timer.timeout: %s" % name))
 	add_child(attack_timer)
-	update_animation()
+	state_machine.entry_functions[CharStateMachine.StateType.DIE] = func(): death_timer.start(1.0); prepare_gameover
+	death_timer.timeout.connect(gameover)
  
 func check_idle() -> bool:
 	return not Input.is_anything_pressed() or velocity.length_squared() < 1
@@ -70,3 +74,9 @@ func handle_jump(_target: Hero) -> void:
 func handle_attack(_target: Hero) -> void:
 	# nothing to do
 	pass
+
+func prepare_gameover() -> void:
+	pass
+
+func gameover() -> void:
+	get_tree().change_scene_to_file("uid://dbcjk18w4x51a")

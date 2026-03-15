@@ -6,10 +6,21 @@
 [ext_resource type="Script" uid="uid://b0nyc6egp5ksc" path="res://char/char_stats.gd" id="4_5gow3"]
 [ext_resource type="Texture2D" uid="uid://ik178hc7kxrt" path="res://resources/images/chars.png" id="5_xlgbq"]
 
+[sub_resource type="Resource" id="Resource_nr2xo"]
+script = ExtResource("2_nlv78")
+name = "smash"
+value = 10
+duration = 0.7
+range = 10
+type = 1
+metadata/_custom_type_script = "uid://cjn88ejpuyin4"
+
 [sub_resource type="Resource" id="Resource_udfhf"]
 script = ExtResource("3_3sk57")
 speed = 80
 hp = 10
+dmg = 5
+abilities = Array[ExtResource("2_nlv78")]([SubResource("Resource_nr2xo")])
 metadata/_custom_type_script = "uid://bb0v3miy125lh"
 
 [sub_resource type="Resource" id="Resource_i6od7"]
