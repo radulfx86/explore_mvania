@@ -20,7 +20,9 @@ func enable(value: bool = true) -> void:
 			#x.enabled = value
 	if has_node("NPCs"):
 		for x in $NPCs.get_children():
-			x.visible = value
+			x.set_process(value)
+			#x.set_physics_process(value)
+			#x.visible = value
 			#x.enabled = value
 
 func disable() -> void:

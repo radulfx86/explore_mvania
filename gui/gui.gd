@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var life_info_placeholder: Control = $p/h/v/h_life/LifeInfoPlaceholder
 @onready var level_info_placeholder: Control = $p/h/v/h_reality/RealityInfoPlaceholder
 @onready var reality_placeholder: Control = $p/h/RealityPlaceholder
+@export var hero: Hero
 var reality_icons: Array[AnimatedSprite2D]
 var current_reality: AnimatedSprite2D
 var heart_icons: Array[AnimatedSprite2D]
@@ -48,8 +49,8 @@ func init_squares(width: int) -> void:
 
 func init_hearts(width: int) -> void:
 	var c:int = 0
-	var player_hp = %Hero.stats.hp
-	for r in range( %Hero.capabilities.hp):
+	var player_hp = hero.stats.hp
+	for r in range( hero.capabilities.hp):
 		var heart: AnimatedSprite2D = animated_item.instantiate()
 		heart.play("heart")
 		heart.position.x += width + 20 * c
@@ -60,13 +61,13 @@ func init_hearts(width: int) -> void:
 		life_info_label.add_child(heart)
 		heart.material.set_shader_parameter("reality_color", Color.RED)
 		c += 1
-	%Hero.hp_changed.connect(update_hp)
+	hero.hp_changed.connect(update_hp)
 	
 func update_level() -> void:
 	current_reality.material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[RealityManagement.realilty_level])
 
 func update_hp() -> void:
-	var player_hp = %Hero.stats.hp
+	var player_hp = hero.stats.hp
 	var c: int = 0
 	for heart in heart_icons:
 		if c >= player_hp:

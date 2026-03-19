@@ -30,7 +30,7 @@ func enable_level(i: int) -> void:
 			var shall_enable = i == index
 			print("changing level %d enable: %s" % [index, shall_enable])
 			levels[index].enable(shall_enable)
-			levels[index].visible = shall_enable
+			#levels[index].visible = shall_enable
 			#levels[index].material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[index])
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -41,6 +41,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("switch_level_0"):
 		enable_level(0)
 		RealityManagement.switch_level(0)
+		PlayerProgress.unlock_skill(0)
+		PlayerProgress.unlock_skill(1)
+		PlayerProgress.unlock_skill(2)
+		PlayerProgress.unlock_skill(3)
 	elif event.is_action_pressed("switch_level_1"):
 		if PlayerProgress.has_skill(PlayerProgress.Skills.RED):
 			enable_level(1)

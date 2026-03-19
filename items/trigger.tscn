@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ccs6pkxjcgrdi"]
+
+[ext_resource type="Script" uid="uid://dcjj5my5kgvf5" path="res://items/trigger.gd" id="1_6wl7x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf4pd"]
+
+[node name="Trigger" type="Area2D" unique_id=141925623]
+collision_mask = 2
+script = ExtResource("1_6wl7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1923435319]
+shape = SubResource("CircleShape2D_yf4pd")
+debug_color = Color(0.921867, 5.515784e-05, 0.6915141, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
