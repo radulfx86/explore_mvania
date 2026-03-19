@@ -1,7 +1,7 @@
 extends CharBase
 class_name Hero
 
-var jump_reset: bool = true
+var is_jumping: bool = false
 
 @onready var text_popup = preload("uid://cok7xddd3b6sj")
 
@@ -19,8 +19,9 @@ func initialize() -> void:
 	state_machine.process_functions[CharStateMachine.StateType.MOVE] = handle_move
 	#state_machine.process_functions[CharStateMachine.StateType.ATTACK] = handle_attack
 	state_machine.entry_functions[CharStateMachine.StateType.ATTACK] = entry_attack
-	state_machine.entry_functions[CharStateMachine.StateType.JUMP] = func() : jump_reset = false
-	#state_machine.exit_functions[CharStateMachine.StateType.JUMP] = func
+	state_machine.entry_functions[CharStateMachine.StateType.JUMP] = jump_enter
+	state_machine.exit_functions[CharStateMachine.StateType.JUMP] = jump_exit 
+	#state_machine.exit_functions[CharStateMachine.StateType.MOVE] = func() : velocity.x = 0.0
 	update_animation()
 	attack_timer.one_shot = true
 	attack_timer.wait_time = 0.5
@@ -29,12 +30,12 @@ func initialize() -> void:
 	state_machine.entry_functions[CharStateMachine.StateType.DIE] = func(): death_timer.start(1.0); prepare_gameover
 	death_timer.timeout.connect(gameover)
  
-func check_idle() -> bool:
+func check_idle() -> bool: 
 	return not Input.is_anything_pressed() or velocity.length_squared() < 1
 func check_jump() -> bool:
-	return (jump_reset && Input.is_action_pressed("jump")) and is_on_floor()
+	return (is_jumping == false && Input.is_action_just_pressed("jump")) and is_on_floor()
 func check_move() -> bool:
-	return Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right")
+	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 func check_attack() -> bool:
 	return (is_attacking \
 				or Input.is_action_just_pressed("attack_melee") \
@@ -67,13 +68,16 @@ func handle_move(_target: Hero) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, capabilities.speed)
 func handle_jump(_target: Hero) -> void:
-	if is_on_floor():
+	if is_on_floor() and is_jumping:
 		velocity.y = capabilities.jump
-	elif Input.is_action_just_released("jump"):
-		jump_reset = true
+		is_jumping = false
 func handle_attack(_target: Hero) -> void:
 	# nothing to do
 	pass
+func jump_exit() -> void:
+	is_jumping = false
+func jump_enter() -> void:
+	is_jumping = true 
 
 func prepare_gameover() -> void:
 	pass

@@ -22,17 +22,17 @@ var current: StateType = StateType.IDLE
 @export var animations: Dictionary[StateType, String] = {
 	StateType.IDLE: "idle",
 	StateType.JUMP: "idle",
-	StateType.MOVE: "run",
+	StateType.MOVE: "move",
 	StateType.ATTACK: "attack",
 	StateType.DIE: "die"
 }
 
 @export var entry_functions: Dictionary[StateType, Callable] = {
-	StateType.IDLE: func(): print("entry idle"),
-	StateType.JUMP: func(): print("entry jump"),
-	StateType.MOVE: func(): print("entry move"),
-	StateType.ATTACK: func(): print("entry attack"),
-	StateType.DIE: func(): print("entry die")
+	StateType.IDLE: no_action,
+	StateType.JUMP: no_action,
+	StateType.MOVE: no_action,
+	StateType.ATTACK: no_action,
+	StateType.DIE: no_action
 }
 
 @export var exit_functions: Dictionary[StateType, Callable] = {
@@ -65,9 +65,9 @@ var current: StateType = StateType.IDLE
 	#StateType.MOVE: [StateType.JUMP, StateType.IDLE, StateType.ATTACK, StateType.DIE],
 	#StateType.ATTACK: [StateType.ATTACK, StateType.MOVE, StateType.IDLE, StateType.DIE],
 	#StateType.DIE: []
-	StateType.IDLE: [StateType.DIE, StateType.MOVE, StateType.ATTACK],
+	StateType.IDLE: [StateType.DIE, StateType.JUMP, StateType.MOVE, StateType.ATTACK],
 	StateType.JUMP: [StateType.DIE, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
-	StateType.MOVE: [StateType.DIE, StateType.JUMP, StateType.IDLE, StateType.ATTACK],
+	StateType.MOVE: [StateType.DIE, StateType.JUMP, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
 	StateType.ATTACK: [StateType.DIE, StateType.MOVE, StateType.IDLE, StateType.ATTACK],
 	StateType.DIE: []
 }
@@ -75,13 +75,15 @@ var current: StateType = StateType.IDLE
 func update_state(target: Node) -> void:
 	process_functions[current].call(target)
 	for test in transitions[current]:
+		#print("check %s" % names[test])
 		if check_functions[test].call():
+			#print("check %s passed" % names[test])
 			exit_functions[current].call()
 			entry_functions[test].call()
 			var animation_name = animations[test]
 			if target.has_method("get_animation_prefix"):
 				animation_name = target.get_animation_prefix() + animation_name
-			print("try to use animation %s" % animation_name)
+			#print("try to use animation %s" % animation_name)
 			if target.animation.sprite_frames.has_animation(animation_name):
 				target.animation.play(animation_name)
 			else:

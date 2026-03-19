@@ -78,7 +78,7 @@ func move_npc(_target: Node) -> void:
 	if target:
 		direction = (target.global_position - global_position).normalized()
 		if direction:
-			animation.flip_h = direction.x < 0
+			animation.flip_h = direction.x > 0
 			hurt.scale.x = sign(direction.x) * abs(hurt.scale.x)
 			velocity.x = direction.x * capabilities.speed
 		else:
@@ -88,7 +88,7 @@ func move_npc(_target: Node) -> void:
 		update_path()
 		if direction:
 			velocity.x = direction.x * capabilities.speed
-			animation.flip_h = direction.x < 0
+			animation.flip_h = direction.x > 0
 		else:
 			velocity.x = move_toward(velocity.x, 0, capabilities.speed)
 	else:
