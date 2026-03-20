@@ -17,7 +17,7 @@ func _ready() -> void:
 	background.size = get_viewport_rect().size/4
 	background.position = -background.size/2
 	for l in levels:
-		l.disable()
+		l.init()
 		add_child(l)
 	enable_level(0)
 
@@ -31,7 +31,6 @@ func enable_level(i: int) -> void:
 			print("changing level %d enable: %s" % [index, shall_enable])
 			levels[index].enable(shall_enable)
 			#levels[index].visible = shall_enable
-			#levels[index].material.set_shader_parameter("reality_color", PlayerProgress.skill_colors[index])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("save_level"):

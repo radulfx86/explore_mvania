@@ -6,6 +6,7 @@
 [node name="Level3" type="Node2D" unique_id=594256 node_paths=PackedStringArray("tiles_map")]
 script = ExtResource("1_hldmh")
 tiles_map = NodePath("Tiles/TileMapLayer")
+reality_level = 3
 
 [node name="Tiles" type="Node" parent="." unique_id=1667551872]
 

@@ -1189,6 +1189,7 @@ point_count = 4
 [node name="Level1" type="Node2D" unique_id=1990381088 node_paths=PackedStringArray("tiles_map")]
 script = ExtResource("1_08mmt")
 tiles_map = NodePath("Tiles/TileMapLayer")
+reality_level = 1
 
 [node name="Items" type="Node" parent="." unique_id=1322384217]
 
