@@ -17,16 +17,13 @@ func initialize() -> void:
 	state_machine.process_functions[CharStateMachine.StateType.IDLE] = handle_idle
 	state_machine.process_functions[CharStateMachine.StateType.JUMP] = handle_jump
 	state_machine.process_functions[CharStateMachine.StateType.MOVE] = handle_move
-	#state_machine.process_functions[CharStateMachine.StateType.ATTACK] = handle_attack
+	state_machine.process_functions[CharStateMachine.StateType.ATTACK] = handle_attack
 	state_machine.entry_functions[CharStateMachine.StateType.ATTACK] = entry_attack
 	state_machine.entry_functions[CharStateMachine.StateType.JUMP] = jump_enter
 	state_machine.exit_functions[CharStateMachine.StateType.JUMP] = jump_exit 
 	#state_machine.exit_functions[CharStateMachine.StateType.MOVE] = func() : velocity.x = 0.0
 	update_animation()
-	attack_timer.one_shot = true
 	attack_timer.wait_time = 0.5
-	attack_timer.timeout.connect(func() : is_attacking = false; print("attack_timer.timeout: %s" % name))
-	add_child(attack_timer)
 	state_machine.entry_functions[CharStateMachine.StateType.DIE] = func(): death_timer.start(1.0); prepare_gameover
 	death_timer.timeout.connect(gameover)
  
@@ -72,6 +69,7 @@ func handle_jump(_target: Hero) -> void:
 		velocity.y = capabilities.jump
 		is_jumping = false
 func handle_attack(_target: Hero) -> void:
+	print("handle_attack( %s ) - %s" % [_target, name])
 	# nothing to do
 	pass
 func jump_exit() -> void:

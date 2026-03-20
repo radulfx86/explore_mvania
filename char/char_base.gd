@@ -55,7 +55,7 @@ func initialize() -> void:
 		detection_area.body_exited.connect(_on_target_body_exited)
 	attack_timer.one_shot = true
 	attack_timer.wait_time = 0.5
-	attack_timer.timeout.connect(func() : is_attacking = false; print("attack_timer.timeout: %s" % name))
+	attack_timer.timeout.connect(func() : is_attacking = false; print("base attack_timer.timeout: %s" % name))
 	add_child(attack_timer)
 
 func check_path() -> void:
@@ -101,16 +101,23 @@ func check_move() -> bool:
 	else:
 		return target != null
 func check_attack() -> bool:
-	var is_attacking_target = target != null \
-		and capabilities.abilities.size() > 0 \
+	var has_attack = capabilities.abilities.size() > 0 \
 		and capabilities.active_ability >= 0 \
-		and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK \
+		and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK
+	var is_in_attack_range = has_attack \
+		and target != null \
 		and capabilities.abilities[capabilities.active_ability].range >= (target.global_position - global_position).length()
-	#print("check attack %s is_attacking_target: %s distance: %s min range %s" % [name, is_attacking_target, (target.global_position - global_position).length() if target else -1, capabilities.abilities[capabilities.active_ability].range if capabilities.abilities.size() > 0 else -1])
-	var do_check_attack = (is_attacking or is_attacking_target) \
-			and capabilities.active_ability >= 0 \
-			and capabilities.abilities[capabilities.active_ability].type == CharAbility.AbilityType.ATTACK
-	#print("check attack %s do_check_attack: %s" % [name, do_check_attack])
+	var do_check_attack = ((is_attacking and has_attack) or is_in_attack_range)
+	if target != null:
+		print("check attack %s has_attack: %s is_attacking: %s is_in_attack_range: %s range: %s >= %s " 
+				% [name,
+				has_attack,
+				is_attacking,
+				is_in_attack_range,
+				capabilities.abilities[capabilities.active_ability].range, 
+				(target.global_position - global_position).length()] )
+	else:
+		print("check attack without target for %s - target: %s" % [name, target])
 	return do_check_attack
 func entry_attack() -> void:
 	print("entry attack %s is attacking %s" % [name, is_attacking])
@@ -132,8 +139,11 @@ func entry_attack() -> void:
 					enemy.apply_dmg(capabilities.dmg)
 
 func update_animation() -> void:
-	if animation.sprite_frames.has_animation(state_machine.animations[state_machine.current]):
-		animation.play("%s_%s" % [get_animation_prefix(), state_machine.animations[state_machine.current]])
+	var animation_name: String = "%s%s" % [get_animation_prefix(), state_machine.animations[state_machine.current]]
+	print("%s.update_animation() -> %s" % [name, animation_name])
+	if animation.sprite_frames.has_animation(animation_name):
+		print("play animation: %s %s" % [name, animation_name])
+		animation.play(animation_name)
 
 func apply_dmg(value: int) -> void:
 	stats.hp -= value
@@ -156,16 +166,16 @@ func _on_target_body_entered(_target: Node2D) -> void:
 	print("_on_target_body_entered(%s) of %s" % [_target, name])
 	for g in get_groups():
 		if _target.is_in_group(g):
-			print("nah, familiar")
+			print("_on_target_body_entered(%s) of %s - in same group" % [_target, name])
 			return
-	print("target itentified")
+	print("_on_target_body_entered(%s) of %s - new target" % [_target, name])
 	target = _target
 	next_pos == target.global_position
 
 func _on_target_body_exited(_target: Node2D) -> void:
 	print("_on_target_body_exited(%s) of %s" % [_target, name])
 	if _target == target:
-		print("clearing target")
+		print("_on_target_body_exited(%s) of %s clearing target" % [_target, name])
 		target = null
 
 func _on_area_entered(area: Area2D) -> void:

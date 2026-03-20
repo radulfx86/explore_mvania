@@ -12,10 +12,6 @@ func init() -> void:
 
 func enable(value: bool = true) -> void:
 	print("enable %s : %s" % [name, value])
-	if mat == null:
-		mat = ShaderMaterial.new()
-		mat.shader = preload("uid://cmk5mkimxhlwx")
-		print("lazy %s %d" % [name, reality_level])
 	if tiles_map:
 		tiles_map.visible = value
 		tiles_map.enabled = value

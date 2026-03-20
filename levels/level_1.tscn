@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dpu4qtwj8awrr"]
 
 [ext_resource type="Script" uid="uid://c7fyyh1yuuo6u" path="res://levels/default_level.gd" id="1_08mmt"]
+[ext_resource type="Script" uid="uid://cjn88ejpuyin4" path="res://char/char_ability.gd" id="4_5ot28"]
 [ext_resource type="PackedScene" uid="uid://pghscv1ndflk" path="res://levels/item.tscn" id="4_08mmt"]
 [ext_resource type="PackedScene" uid="uid://c73beg7eimws0" path="res://char/char_base.tscn" id="5_5ot28"]
 [ext_resource type="Script" uid="uid://bb0v3miy125lh" path="res://char/char_capabilities.gd" id="6_aerfg"]
@@ -11,6 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://0yd1xmihwnst" path="res://char/enemies/enemy_round.tscn" id="10_5ot28"]
 [ext_resource type="Script" uid="uid://bf7t4gv72jwkh" path="res://char/enemies/enemy_diamond.gd" id="10_aerfg"]
 
+[sub_resource type="Resource" id="Resource_betor"]
+script = ExtResource("4_5ot28")
+value = 1
+range = 5
+type = 1
+metadata/_custom_type_script = "uid://cjn88ejpuyin4"
+
 [sub_resource type="Resource" id="Resource_08mmt"]
 script = ExtResource("6_aerfg")
 speed = 10
@@ -19,7 +27,7 @@ hp = 10
 dmg = null
 def = null
 active_ability = null
-abilities = null
+abilities = Array[ExtResource("4_5ot28")]([SubResource("Resource_betor")])
 metadata/_custom_type_script = "uid://bb0v3miy125lh"
 
 [sub_resource type="Resource" id="Resource_5ot28"]
@@ -1158,6 +1166,9 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_betor"]
 radius = 7.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ot28"]
+size = Vector2(49, 11)
+
 [sub_resource type="Resource" id="Resource_aerfg"]
 script = ExtResource("7_nmsli")
 hp = 10
@@ -1211,13 +1222,14 @@ value = 1
 
 [node name="NPCs" type="Node" parent="." unique_id=416829794]
 
-[node name="NPC" parent="NPCs" unique_id=1028976981 node_paths=PackedStringArray("animation", "hit", "hurt") instance=ExtResource("5_5ot28")]
+[node name="NPC" parent="NPCs" unique_id=1028976981 node_paths=PackedStringArray("detection_area", "animation", "hit", "hurt") instance=ExtResource("5_5ot28")]
 position = Vector2(350, 276)
 collision_layer = 4
 collision_mask = 3
 capabilities = SubResource("Resource_08mmt")
 stats = SubResource("Resource_5ot28")
 char_name = "squid"
+detection_area = NodePath("detection_area")
 animation = NodePath("AnimatedSprite2D")
 hit = NodePath("hit_hurt_area")
 hurt = NodePath("hit_hurt_area")
@@ -1235,6 +1247,14 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/hit_hurt_area" unique_id=123913473]
 shape = SubResource("CircleShape2D_betor")
+
+[node name="detection_area" type="Area2D" parent="NPCs/NPC" unique_id=1111884737]
+collision_layer = 0
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/detection_area" unique_id=1773593676]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_5ot28")
 
 [node name="Enemy_1" parent="NPCs" unique_id=928423284 node_paths=PackedStringArray("path") instance=ExtResource("9_08mmt")]
 position = Vector2(124, 275)

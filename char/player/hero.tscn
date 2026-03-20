@@ -175,7 +175,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o6mel")
 }],
-"loop": false,
+"loop": true,
 "name": &"1_hero_attack",
 "speed": 2.0
 }, {
@@ -230,7 +230,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"2_hero_attack",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -283,7 +283,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"3_hero_attack",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
