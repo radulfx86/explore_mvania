@@ -32,12 +32,13 @@ signal hp_changed
 @export var hurt: Area2D
 
 @export var direction: Vector2 = Vector2(1,0)
-var death_timer: Timer = Timer.new()
+var death_timer: Timer
 
 func _ready() -> void:
 	initialize()
 
 func initialize() -> void:
+	death_timer = Timer.new()
 	state_machine.check_functions[CharStateMachine.StateType.DIE] = func(): return stats.hp <= 0
 	state_machine.entry_functions[CharStateMachine.StateType.DIE] = func(): death_timer.start(1.0)
 	state_machine.process_functions[CharStateMachine.StateType.MOVE] = move_npc
@@ -45,7 +46,7 @@ func initialize() -> void:
 	state_machine.check_functions[CharStateMachine.StateType.ATTACK] = check_attack
 	state_machine.entry_functions[CharStateMachine.StateType.ATTACK] = entry_attack
 	death_timer.one_shot = true
-	death_timer.timeout.connect(func(): queue_free())
+	death_timer.timeout.connect(queue_free)
 	add_child(death_timer)
 	update_animation()
 	check_path()

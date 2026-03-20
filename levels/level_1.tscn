@@ -1158,6 +1158,16 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_betor"]
 radius = 7.0
 
+[sub_resource type="Resource" id="Resource_aerfg"]
+script = ExtResource("7_nmsli")
+hp = 10
+metadata/_custom_type_script = "uid://b0nyc6egp5ksc"
+
+[sub_resource type="Resource" id="Resource_nmsli"]
+script = ExtResource("7_nmsli")
+hp = 10
+metadata/_custom_type_script = "uid://b0nyc6egp5ksc"
+
 [sub_resource type="Curve2D" id="Curve2D_08mmt"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -71, 8, 0, 0, 0, 0, 22, 9, 0, 0, 0, 0, 90, 10, 0, 0, 0, 0, 157, 9)
@@ -1232,10 +1242,12 @@ path = NodePath("../../Paths/Enemy_1")
 
 [node name="Enemy_2" parent="NPCs" unique_id=1376415472 node_paths=PackedStringArray("path") instance=ExtResource("10_5ot28")]
 position = Vector2(303, 333)
+stats = SubResource("Resource_aerfg")
 path = NodePath("../../Paths/Enemy_2")
 
 [node name="Enemy_3" parent="NPCs" unique_id=886042124 node_paths=PackedStringArray("path") instance=ExtResource("10_5ot28")]
 position = Vector2(401, 436)
+stats = SubResource("Resource_nmsli")
 path = NodePath("../../Paths/Enemy_3")
 
 [node name="Tiles" type="Node" parent="." unique_id=123111212]
