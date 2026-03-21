@@ -13,7 +13,10 @@ config_version=5
 config/name="mvania"
 run/main_scene="uid://cg84afmombtv2"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0.1712448, 0.13438869, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://cesfirvpmi7hg"
+config/icon="uid://cesfirvpmi7hg"
 
 [autoload]
 

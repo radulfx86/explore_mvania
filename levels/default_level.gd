@@ -35,3 +35,7 @@ func enable(value: bool = true) -> void:
 
 func disable() -> void:
 	enable(false)
+
+func _on_exit_trigger_triggered(_target: Node) -> void:
+	if reality_level == 2 && RealityManagement.realilty_level == reality_level:
+		get_tree().change_scene_to_file("uid://bx2gytfad4ast")
